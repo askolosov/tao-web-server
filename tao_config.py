@@ -27,24 +27,20 @@ import tao_handlers
 
 # Configuration of the Tao Web Server is a Python dictionary data
 # structure, imported by the Web-server implementation
-cfg = dict()
+cfg = {
+    "bind_ip": "127.0.0.1",
+    "bind_port": 9999,
 
-cfg["bind_ip"] = "127.0.0.1"
-cfg["bind_port"] = 9999
+    # vhosts section of the configuration describes different sites,
+    # which are serving by this web-server
+    "vhosts": {
 
-# vhosts section of the configuration describes different sites,
-# which are serving by this web-server
-_vhosts = dict()
-cfg["vhosts"] = _vhosts
-
-# Default vhost configuration which is used either if a request
-# without the Host header was received or if the Host header of a
-# request doesn't match to any other vhosts
-_vhost = dict()
-_vhosts["default"] = _vhost
-
-_vhost["root"] = "/tmp/test"
-_vhost["handler"] = tao_handlers.FileHandler
-
-
-
+        # Default vhost configuration which is used either if a request
+        # without the Host header was received or if the Host header of a
+        # request doesn't match to any other vhosts
+        "default": {
+            "root": "/tmp/test",
+            "handler": tao_handlers.FileHandler,
+        },
+    },
+}

@@ -25,13 +25,14 @@
 
 import re
 
-status_messages = dict()
-status_messages[200] = "Ok"
-status_messages[400] = "Bad Request"
-status_messages[403] = "Forbidden"
-status_messages[404] = "Not Found"
-status_messages[500] = "Internal Server Error"
-status_messages[501] = "Not Implemented"
+status_messages = {
+    200: "Ok",
+    400: "Bad Request",
+    403: "Forbidden",
+    404: "Not Found",
+    500: "Internal Server Error",
+    501: "Not Implemented"
+}
 
 def send_response_start(out, status_code, maj_ver, min_ver, headers=dict()):
     """
